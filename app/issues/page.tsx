@@ -1,4 +1,5 @@
 import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 interface IssuesPageProps {
   // Define your props here
@@ -7,7 +8,9 @@ interface IssuesPageProps {
 export default function IssuesPage({}: IssuesPageProps) {
   return (
     <div>
-      <Button>New Issue</Button>
+      <Button>
+        <Link href="/issues/new">New Issue</Link>
+      </Button>
     </div>
   );
 }
