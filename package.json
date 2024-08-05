@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen": "bun prisma generate",
+    "push": "bun prisma push",
+    "migrate": "bun prisma migrate"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -28,6 +31,7 @@
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
+    "prisma": "^5.17.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
