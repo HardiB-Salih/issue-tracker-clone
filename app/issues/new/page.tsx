@@ -9,7 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 
 import "easymde/dist/easymde.min.css";
-import { InfoIcon } from "lucide-react";
+import { InfoIcon, Loader2 } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/lib/validationSchema";
 import ErrorMessage from "@/components/error-message";
@@ -23,7 +23,7 @@ export default function NewIssuePage() {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema),
   });
@@ -60,7 +60,10 @@ export default function NewIssuePage() {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-        <Button type="submit">Submit new issue</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          Submit new issue
+          {isSubmitting && <Loader2 className="size-4 animate-spin" />}
+        </Button>
       </form>
     </div>
   );
