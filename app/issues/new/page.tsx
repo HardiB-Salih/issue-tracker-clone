@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { z } from "zod";
 
 import "easymde/dist/easymde.min.css";
 import { InfoIcon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/lib/validationSchema";
-import { z } from "zod";
+import ErrorMessage from "@/components/error-message";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -49,11 +50,7 @@ export default function NewIssuePage() {
       )}
       <form onSubmit={handleSubmit(onCreate)} className="space-y-3">
         <TextField.Root placeholder="Title" {...register("title")} />
-        {errors.title && (
-          <Text as="p" color="red">
-            {errors.title.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -61,11 +58,7 @@ export default function NewIssuePage() {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && (
-          <Text as="p" color="red">
-            {errors.description.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
         <Button type="submit">Submit new issue</Button>
       </form>
