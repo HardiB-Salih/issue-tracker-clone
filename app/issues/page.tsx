@@ -1,5 +1,4 @@
-import IssueStatusBadge from "@/components/issue-status-badge";
-import Link from "@/components/Link";
+import { Link, IssueStatusBadge } from "@/components/index";
 import prisma from "@/prisma/prisma-client";
 import { Table } from "@radix-ui/themes";
 import IssueActions from "./issue-actions";
@@ -44,3 +43,6 @@ export default async function IssuesPage() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
+// export const revalidate = 60;

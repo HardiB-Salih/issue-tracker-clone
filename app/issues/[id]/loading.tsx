@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/index";
 import { Card, Flex } from "@radix-ui/themes";
 
 export default function Loading() {
