@@ -4,3 +4,4 @@ export { default as IssueStatusBadge } from "./issue-status-badge";
 export { default as NavBar } from "./nav-bar";
 export { default as Skeleton } from "./ui/skeleton";
 export { default as LoadingIssue } from "./loading-issue";
+export { default as ConfirmDialog } from "./confirm-dialog";

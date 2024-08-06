@@ -36,3 +36,36 @@ export async function PATCH(
     return NextResponse.json({ error: "Internal issue" }, { status: 500 });
   }
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const intId = parseInt(params.id);
+
+    if (isNaN(intId)) {
+      return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
+    }
+
+    const issue = await prisma.issue.findUnique({
+      where: { id: intId },
+    });
+
+    if (!issue) {
+      return NextResponse.json({ error: "Not Found" }, { status: 404 });
+    }
+
+    await prisma.issue.delete({
+      where: { id: issue.id },
+    });
+
+    return NextResponse.json({});
+  } catch (error) {
+    console.error("[ISSUE_DELETE] Error:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
+  }
+}
