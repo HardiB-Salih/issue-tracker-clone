@@ -5,7 +5,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 
 import ErrorMessage from "@/components/error-message";
@@ -13,7 +12,11 @@ import { createIssueSchema } from "@/lib/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "easymde/dist/easymde.min.css";
 import { InfoIcon, Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 export default function NewIssuePage() {
